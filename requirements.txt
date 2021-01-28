@@ -1,0 +1,5 @@
+django
+django-quill-editor
+psycopg2-binary
+gunicorn
+Pillow

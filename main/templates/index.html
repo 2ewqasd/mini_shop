@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+    <title>Заголовок главной страницы</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@400;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css'%}">
+	<link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            {%for result in editmain%}
+                <h1>{{result.first_title}}</h1>
+            {% endfor %}
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {%for Picture in object_list%}
+                    <div class="swiper-slide"><img src="{{Picture.image.url}}" alt="{{Picture.image}}" title="{{Picture.title}}"></div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            <div class="intro-text">
+                {%for result in editmain%}
+                    <p>{{result.text}}</p>
+                {% endfor %}
+            </div>
+            <div class="products-list">
+                {%for result in editmain%}
+                    <h2>{{result.second_title}}</h2>
+                {% endfor %}
+                <ul>
+                    <li><a href="product.html">Продукт 1</a></li>
+                    <li><a href="product.html">Продукт 2</a></li>
+                    <li><a href="product.html">Продукт 3</a></li>
+                    <li><a href="product.html">Продукт 4</a></li>
+                    <li><a href="product.html">Продукт 5</a></li>
+                </ul>
+            </div>
+            {%for result in editmain%}
+                <div id="map" data-latitude="{{result.datalatitude}}" data-longitude="{{result.datalongitude}}"></div>
+            {% endfor %}
+            <h2>Отправить сообщение</h2>
+            <form id="form">
+                <input type="text" placeholder="Ваше имя" class="text-box" id="name" onfocus="blurEvent(this)" onkeyup="onChangeEvent(this)">
+                <input type="text" placeholder="Электронная почта" class="text-box" id="email" onfocus="blurEvent(this)" onkeyup="onChangeEvent(this)">
+                <input type="submit" value="Отправить" class="button" onclick="event.preventDefault();onSubmitEvent()">
+            </form>
+        </div>
+    </div>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=28ba27e6-8179-45dd-8a90-a542e1883e67" type="text/javascript"></script>
+	<script src="{% static 'js/swiper-bundle.min.js'%}"></script>
+	<script src="{% static 'js/main.js'%}"></script>
+</body>
+</html>
