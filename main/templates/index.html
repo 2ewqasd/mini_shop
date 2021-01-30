@@ -5,9 +5,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-    <title>Заголовок главной страницы</title>
+    {%for result in editmain%}
+    <meta name="keywords" content="{{result.keywords}}">
+	<meta name="description" content="{{result.keywords}}">
+        <title>{{result.title}}</title>
+    {% endfor %}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@400;900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css'%}">
@@ -17,7 +19,7 @@
     <div class="wrapper">
         <div class="content">
             {%for result in editmain%}
-                <h1>{{result.first_title}}</h1>
+                <h1>{{result.first_head}}</h1>
             {% endfor %}
             <div class="swiper-container">
                 <div class="swiper-wrapper">
@@ -29,17 +31,17 @@
                 <div class="swiper-button-prev"></div>
             </div>
             <div class="intro-text">
-                {%for result in editmain%}
+                {%for result in extra_text%}
                     <p>{{result.text}}</p>
                 {% endfor %}
             </div>
             <div class="products-list">
                 {%for result in editmain%}
-                    <h2>{{result.second_title}}</h2>
+                    <h2>{{result.second_head}}</h2>
                 {% endfor %}
                 <ul>
                     {%for result in products%}
-                    <li><a href="good/{{result.title}}">Продукт {{result.title}}</a></li>
+                    <li><a href="good/{{result.url}}">{{result.title}}</a></li>
                     {% endfor %}
                 </ul>
             </div>
