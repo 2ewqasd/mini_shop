@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import ShowInformation
+from .views import ShowInformation, Goods
 
 urlpatterns = [
     path("", ShowInformation.as_view(template_name="index.html"), name="main"),
+    path("good/<slug:slug>", Goods.as_view(template_name="product.html"), name="product"),
 ]

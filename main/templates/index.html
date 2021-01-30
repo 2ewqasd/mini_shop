@@ -21,8 +21,8 @@
             {% endfor %}
             <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    {%for Picture in object_list%}
-                    <div class="swiper-slide"><img src="{{Picture.image.url}}" alt="{{Picture.image}}" title="{{Picture.title}}"></div>
+                    {%for result in imageformain%}
+                    <div class="swiper-slide"><img src="{{result.image.url}}" alt="{{result.image}}" title="{{result.title}}"></div>
                     {% endfor %}
                 </div>
                 <div class="swiper-button-next"></div>
@@ -38,11 +38,9 @@
                     <h2>{{result.second_title}}</h2>
                 {% endfor %}
                 <ul>
-                    <li><a href="product.html">Продукт 1</a></li>
-                    <li><a href="product.html">Продукт 2</a></li>
-                    <li><a href="product.html">Продукт 3</a></li>
-                    <li><a href="product.html">Продукт 4</a></li>
-                    <li><a href="product.html">Продукт 5</a></li>
+                    {%for result in products%}
+                    <li><a href="good/{{result.title}}">Продукт {{result.title}}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
             {%for result in editmain%}

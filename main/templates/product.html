@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+    <title>{{object.title}}</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@400;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <a href="/" class="go-back">На главную</a>
+            <h1>{{object.product_name}}</h1>
+            <img src="{{object.image.url}}" alt="{{object.product_name}}" class="product-image">
+            <div class="product-info">
+                <div class="product-info-item">
+                    <h2>{{object.first_head}}</h2>
+                    <ul>
+                        <li>{{object.first_text_1}}</li>
+                        <li>{{object.first_text_2}}</li>
+                        <li>{{object.first_text_3}}</li>
+                    </ul>
+                </div>
+                <div class="product-info-item">
+                    <h2>{{object.second_head}}</h2>
+                    <ul>
+                        <li>{{object.second_text_1}}</li>
+                        <li>{{object.second_text_2}}</li>
+                        <li>{{object.second_text_3}}</li>
+                    </ul>
+                </div>
+                <div class="product-info-item">
+                    <h2>{{object.third_head}}</h2>
+                    <ul>
+                        <li>{{object.third_text_1}}</li>
+                        <li>{{object.third_text_2}}</li>
+                        <li>{{object.third_text_3}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
