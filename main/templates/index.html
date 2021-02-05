@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
+    {%for result in editmain%}
+    <meta name="keywords" content="{{result.keywords}}">
+	<meta name="description" content="{{result.keywords}}">
+        <title>{{result.title}}</title>
+    {% endfor %}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Piazzolla:wght@400;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css'%}">
+	<link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            {%for result in editmain%}
+                <h1>{{result.first_head}}</h1>
+            {% endfor %}
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    {%for result in imageformain%}
+                    <div class="swiper-slide"><img src="{{result.image.url}}" alt="{{result.image}}" title="{{result.title}}"></div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            <div class="intro-text">
+                {%for result in extra_text%}
+                    <p>{{result.text}}</p>
+                {% endfor %}
+            </div>
+            <div class="products-list">
+                {%for result in editmain%}
+                    <h2>{{result.second_head}}</h2>
+                {% endfor %}
+                <ul>
+                    {%for result in products%}
+                    <li><a href="good/{{result.url}}">{{result.title}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {%for result in editmain%}
+                <div id="map" data-latitude="{{result.datalatitude}}" data-longitude="{{result.datalongitude}}"></div>
+            {% endfor %}
+            <h2>Отправить сообщение</h2>
+            <form id="form" method="POST">
+                {% csrf_token %}
+                <p><label for="id_name"></label>
+                    <input type="text" placeholder="Ваше имя" class="text-box" id="id_name" name="name" onfocus="blurEvent(this)" onkeyup="onChangeEvent(this)" required></p>
+                <p><label for="id_email"></label>
+                    <input type="text" placeholder="Электронная почта" class="text-box" id="id_email" name="email" onfocus="blurEvent(this)" onkeyup="onChangeEvent(this)" required></p>
+                <input type="submit" value="Отправить" class="button">
+            </form>
+        </div>
+    </div>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=28ba27e6-8179-45dd-8a90-a542e1883e67" type="text/javascript"></script>
+	<script src="{% static 'js/swiper-bundle.min.js'%}"></script>
+	<script src="{% static 'js/main.js'%}"></script>
+</body>
+</html>
