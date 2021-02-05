@@ -1,11 +1,9 @@
-from django.shortcuts import render,redirect
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from .models import ImageForMain, EditMain, Products, Extra_Text, Extra_Text_Product
+from .models import ImageForMain, EditMain, Products, Extra_Text
 from .forms import ContactForm
 from django.views.generic.edit import FormView
-from django.core.mail import BadHeaderError, send_mail
-from django.http import HttpResponse, HttpResponseRedirect
+from django.core.mail import send_mail
 
 
 class ShowInformation(ListView, FormView):
@@ -29,8 +27,9 @@ class ShowInformation(ListView, FormView):
     def form_valid(self, form):
         name = form.cleaned_data['name']
         email = form.cleaned_data['email']
-        send_mail('test1', f'{name} Test2', None,[email])
+        send_mail('test1', f'{name} Test2', None, [email])
         return super().form_valid(form)
+
 
 class Goods(DetailView):
 
@@ -40,4 +39,3 @@ class Goods(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
-

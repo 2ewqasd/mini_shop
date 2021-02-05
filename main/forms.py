@@ -1,5 +1,5 @@
 from django import forms
-from django.core.mail import BadHeaderError, send_mail
+
 
 class ContactForm(forms.Form):
     name = forms.CharField(required=True)
