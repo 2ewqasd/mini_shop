@@ -142,5 +142,5 @@ class Extra_Text_Product(models.Model):
     text = models.CharField(default='',max_length=1000)
 
     def __str__(self):
-        return self.text and self.number
+        return self.text
     
