@@ -62,7 +62,6 @@ class ImageForMain(models.Model):
         """
         #Opening the uploaded image
         im = Image.open(self.image)
-
         output = BytesIO()
 
         #Resize/modify the image
@@ -104,17 +103,8 @@ class Products(models.Model):
     image = models.ImageField(upload_to='products', default='', blank=True, validators=[validate_image,validate_file_extension])
     product_name = models.CharField(default='Название продукта',max_length=100, blank=True)
     first_head = models.CharField(default='Заголовок 1', max_length=100, blank=True)
-    first_text_1 = models.CharField(default='Текст первого заголовка', max_length=1000, blank=True)
-    first_text_2 = models.CharField(default='', max_length=1000, blank=True)
-    first_text_3 = models.CharField(default='', max_length=1000, blank=True)
     second_head = models.CharField(default='Заголовок 2', max_length=100, blank=True)
-    second_text_1 = models.CharField(default='Текст второго заголовка', max_length=1000, blank=True)
-    second_text_2 = models.CharField(default='', max_length=1000, blank=True)
-    second_text_3 = models.CharField(default='', max_length=1000, blank=True)
     third_head = models.CharField(default='Заголовок 3', max_length=100, blank=True)
-    third_text_1 = models.CharField(default='Текст третьего заголовка', max_length=1000, blank=True)
-    third_text_2 = models.CharField(default='', max_length=1000, blank=True)
-    third_text_3 = models.CharField(default='', max_length=1000, blank=True)
     pub_date = models.DateTimeField(default= timezone.now)
 
     def save(self):
@@ -123,7 +113,6 @@ class Products(models.Model):
         """
         #Opening the uploaded image
         im = Image.open(self.image)
-
         output = BytesIO()
 
         #Resize/modify the image
@@ -138,9 +127,20 @@ class Products(models.Model):
         
         super(Products,self).save()
     
-
     class Meta:
         ordering = ['-pub_date']
 
     def __str__(self):
         return self.title
+
+class Extra_Text_Product(models.Model):
+    """
+    Extra text for products
+    """
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    nubmer = models.IntegerField(blank=True, null=True)
+    text = models.CharField(default='',max_length=1000)
+
+    def __str__(self):
+        return self.text and self.number
+    

@@ -1,9 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from .models import ImageForMain, EditMain, Products, Extra_Text
+from .models import ImageForMain, EditMain, Products, Extra_Text, Extra_Text_Product
+from .forms import ContactForm
+from django.views.generic.edit import FormView
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse, HttpResponseRedirect
 
-class ShowInformation(ListView):
+
+class ShowInformation(ListView, FormView):
     """A page representing a list of objects."""
 
     model = ImageForMain
@@ -17,6 +22,16 @@ class ShowInformation(ListView):
         context["extra_text"] = Extra_Text.objects.all()
         return context
 
+    template_name = 'index.html'
+    form_class = ContactForm
+    success_url = '/#'
+
+    def form_valid(self, form):
+        name = form.cleaned_data['name']
+        email = form.cleaned_data['email']
+        send_mail('test1', f'{name} Test2', None,[email])
+        return super().form_valid(form)
+
 class Goods(DetailView):
 
     model = Products
@@ -26,5 +41,3 @@ class Goods(DetailView):
         context = super().get_context_data(**kwargs)
         return context
 
-    
-    

@@ -22,25 +22,31 @@
                 <div class="product-info-item">
                     <h2>{{object.first_head}}</h2>
                     <ul>
-                        <li>{{object.first_text_1}}</li>
-                        <li>{{object.first_text_2}}</li>
-                        <li>{{object.first_text_3}}</li>
+                        {%for result in products.extra_text_product_set.all%}
+                            {%if result.nubmer == 1%}
+                                <li>{{result.text}}</li>
+                            {%endif%}
+                        {%endfor%}
                     </ul>
                 </div>
                 <div class="product-info-item">
                     <h2>{{object.second_head}}</h2>
                     <ul>
-                        <li>{{object.second_text_1}}</li>
-                        <li>{{object.second_text_2}}</li>
-                        <li>{{object.second_text_3}}</li>
+                        {%for result in products.extra_text_product_set.all%}
+                            {%if result.nubmer == 2%}
+                                <li>{{result.text}}</li>
+                            {%endif%}
+                        {%endfor%}
                     </ul>
                 </div>
                 <div class="product-info-item">
                     <h2>{{object.third_head}}</h2>
                     <ul>
-                        <li>{{object.third_text_1}}</li>
-                        <li>{{object.third_text_2}}</li>
-                        <li>{{object.third_text_3}}</li>
+                        {%for result in products.extra_text_product_set.all%}
+                            {%if result.nubmer == 3%}
+                                <li>{{result.text}}</li>
+                            {%endif%}
+                        {%endfor%}
                     </ul>
                 </div>
             </div>

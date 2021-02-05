@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 {% load static %}
 <html lang="ru">
@@ -49,10 +48,13 @@
                 <div id="map" data-latitude="{{result.datalatitude}}" data-longitude="{{result.datalongitude}}"></div>
             {% endfor %}
             <h2>Отправить сообщение</h2>
-            <form id="form">
-                <input type="text" placeholder="Ваше имя" class="text-box" id="name" onfocus="blurEvent(this)" onkeyup="onChangeEvent(this)">
-                <input type="text" placeholder="Электронная почта" class="text-box" id="email" onfocus="blurEvent(this)" onkeyup="onChangeEvent(this)">
-                <input type="submit" value="Отправить" class="button" onclick="event.preventDefault();onSubmitEvent()">
+            <form id="form" method="POST">
+                {% csrf_token %}
+                <p><label for="id_name"></label>
+                    <input type="text" placeholder="Ваше имя" class="text-box" id="id_name" name="name" onfocus="blurEvent(this)" onkeyup="onChangeEvent(this)" required></p>
+                <p><label for="id_email"></label>
+                    <input type="text" placeholder="Электронная почта" class="text-box" id="id_email" name="email" onfocus="blurEvent(this)" onkeyup="onChangeEvent(this)" required></p>
+                <input type="submit" value="Отправить" class="button">
             </form>
         </div>
     </div>
