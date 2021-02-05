@@ -1,4 +1,7 @@
- build:
+name: Build project
+on: [push]
+jobs:
+  build:
     name: Build
     runs-on: ubuntu-latest
     steps:
@@ -27,5 +30,5 @@
         uses: AkhileshNS/heroku-deploy@v3.4.6
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "mini_shop"
+          heroku_app_name: "minishop2ewqasd"
           heroku_email : "specforworkwithpeop@gmail.com"
